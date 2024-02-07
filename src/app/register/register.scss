@@ -1,0 +1,119 @@
+@font-face {
+  font-family: "da";
+  src: url("../assets/fonts/Metropolis-Bold.otf");
+}
+
+@font-face {
+  font-family: "da1";
+  src: url("../assets/fonts/Metropolis-Black.otf");
+}
+
+@font-face {
+  font-family: "nu";
+  src: url("../assets/fonts/Metropolis-Regular.otf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "nu";
+  box-sizing: content-box;
+}
+
+:root {
+  --red: #e02932;
+  --yel: #ffda33;
+  --gre: #58a550;
+  --black: #141414;
+  --purple: #3a86ff;
+  --gry: #747474;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background: url("../assets/images/bgregister.svg");
+  background-size: cover;
+}
+
+.login-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form h1 {
+  font-family: "da1" !important;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.login-form * {
+  margin: 5px;
+}
+.login-form input {
+  padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+  border-radius: 15px;
+  border: none;
+  border: 3px solid black;
+  width: 225px;
+  transition: 0.4s;
+  font-size: 16px;
+  font-family: "da" !important;
+  padding-left: 35px;
+}
+
+.login-form input:focus,
+input:active,
+input:hover {
+  border: 3px solid var(--purple);
+  outline: none;
+}
+
+.login-form button {
+  font-size: 24px;
+  padding: 10px 40px;
+  background-color: transparent;
+  border: none;
+  border-radius: 20px;
+  transition: 0.2s;
+  background-color: var(--black);
+  color: white;
+  font-family: "da1" !important;
+  margin-top: 1rem;
+}
+
+.login-form button:hover {
+  background-color: var(--purple);
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.login-form .icon {
+  position: absolute;
+  margin-top: 17px;
+  margin-left: 15px;
+}
+.login-form {
+  .can {
+    position: relative;
+    label {
+      padding: 0 0.2em;
+      position: absolute;
+      top: -0.5em;
+      left: 1em;
+      background-color: white;
+      font-family: "da";
+      color: var(--gry);
+    }
+  }
+}
+
+.showpass {
+  margin-left: -40px !important;
+}
