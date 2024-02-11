@@ -29,6 +29,7 @@
   --gry: #747474;
   --smarald: #1bc537;
   --smarald-contur: #16a22d;
+  --crimson: #d7263d;
 }
 
 .container {
@@ -136,11 +137,19 @@ input:hover {
   bottom: 0;
   right: 0;
   margin: 1rem;
-  background-color: var(--smarald);
   padding: 1.5rem;
   border-radius: 10px;
-  border-right: 0.35rem solid var(--smarald-contur);
   animation: myAnim 0.5s ease 0s 1 normal both;
+}
+
+.success {
+  background-color: var(--smarald);
+  border-right: 0.35rem solid var(--smarald-contur);
+}
+
+.failed {
+  background-color: var(--red);
+  border-right: 0.35rem solid var(--crimson);
 }
 
 @keyframes myAnim {

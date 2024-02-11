@@ -8,18 +8,49 @@ import cube from "./assets/images/cube.png";
 import arrow from "./assets/images/down-arrow.svg";
 import test from "./assets/images/file.jpg";
 import cart from "./assets/images/shop.svg";
+import omlolo from "./assets/images/cart.svg";
+
 import { useState } from "react";
+import { useCookies } from "next-client-cookies";
 
 export default function Home() {
   const [click, setClick] = useState(false);
+  const cookies = useCookies();
+
+  function isLoggedIn() {
+    if (cookies.get("auth") === "true") return true;
+    else return false;
+  }
+
+  function LogOut() {
+    if (cookies.get("auth") === "true") {
+      location.reload();
+      cookies.remove("auth");
+    }
+  }
 
   function asd() {
-    return (
-      <div className="user-panel">
-        <a href="/login">Autentificare</a>
-        <a href="/register">&#206;nregistrare</a>
-      </div>
-    );
+    if (isLoggedIn()) {
+      return (
+        <div className="user-panel">
+          <Image
+            width={24}
+            height={24}
+            alt="Shopping cart"
+            src={omlolo}
+            id="nush"
+          />
+          <a onClick={LogOut}>Deconectare</a>
+        </div>
+      );
+    } else {
+      return (
+        <div className="user-panel">
+          <a href="/login">Autentificare</a>
+          <a href="/register">&#206;nregistrare</a>
+        </div>
+      );
+    }
   }
 
   return (

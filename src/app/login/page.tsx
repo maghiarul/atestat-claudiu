@@ -8,8 +8,11 @@ import loginPass from "../assets/images/login-pass.svg";
 import loginUser from "../assets/images/login-user.svg";
 import loginEye from "../assets/images/login-eye.svg";
 import successNotify from "../assets/images/success-notify.svg";
+import failedNotify from "../assets/images/failed-notify.svg";
 
 import Image from "next/image";
+import axios from "axios";
+import { useCookies } from "next-client-cookies";
 
 function Page() {
   const [visible, setVisible] = useState(false);
@@ -18,16 +21,35 @@ function Page() {
   const [pass, setPass] = useState("");
   const [passconf, setPassConf] = useState("");
 
-  const [valid, setValid] = useState(false);
+  const [valid, setValid] = useState(0);
+  const [errMsg, setErrMsg] = useState("");
 
-  function Notification() {
-    //daca s-a logat cu succes
-    return (
-      <div className="notify success">
-        <Image src={successNotify} width={32} height={32} alt="success" />
-        <h2>Autentificat cu succes !</h2>
-      </div>
-    );
+  const cookies = useCookies();
+
+  async function tryLogin() {
+    if (user !== "" && email !== "" && pass !== "" && passconf !== "") {
+      const data = JSON.stringify({
+        username: user,
+        email: email,
+        password: pass,
+      });
+      const res = await axios
+        .post("http://localhost:4000/login", data, {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then((res) => {
+          console.log(res.data);
+          console.log(valid);
+          if (res.data.success === true) {
+            setValid(1);
+            cookies.set("auth", "true");
+          }
+          if (res.data.success === false) {
+            setValid(2);
+            setErrMsg(res.data.message);
+          }
+        });
+    }
   }
 
   return (
@@ -123,13 +145,32 @@ function Page() {
         </div>
         <button
           onClick={() => {
-            setValid(true);
+            tryLogin().then(() => {
+              window.setTimeout(function () {
+                window.location.href = "http://localhost:3000/";
+              }, 1000);
+            });
           }}
         >
           Autentific&#259; !
         </button>
       </div>
-      {valid ? Notification() : ""}
+      {(() => {
+        if (valid === 1)
+          return (
+            <div className="notify success">
+              <Image src={successNotify} width={32} height={32} alt="success" />
+              <h2>Autentificat cu succes !</h2>
+            </div>
+          );
+        else if (valid === 2)
+          return (
+            <div className="notify failed">
+              <Image src={failedNotify} width={32} height={32} alt="success" />
+              <h2>{errMsg}</h2>
+            </div>
+          );
+      })()}
     </div>
   );
 }
