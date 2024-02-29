@@ -27,6 +27,9 @@
   --black: #141414;
   --purple: #3a86ff;
   --gry: #747474;
+  --smarald: #1bc537;
+  --smarald-contur: #16a22d;
+  --crimson: #d7263d;
 }
 
 .container {
@@ -116,4 +119,47 @@ input:hover {
 
 .showpass {
   margin-left: -40px !important;
+}
+
+.notify {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img,
+  h2 {
+    margin: 0 !important;
+    color: #fff;
+  }
+  img {
+    margin-right: 0.75rem !important;
+  }
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 1rem;
+  padding: 1.5rem;
+  border-radius: 10px;
+  animation: myAnim 0.5s ease 0s 1 normal both;
+}
+
+.success {
+  background-color: var(--smarald);
+  border-right: 0.35rem solid var(--smarald-contur);
+}
+
+.failed {
+  background-color: var(--red);
+  border-right: 0.35rem solid var(--crimson);
+}
+
+@keyframes myAnim {
+  0% {
+    opacity: 0;
+    transform: translateX(250px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

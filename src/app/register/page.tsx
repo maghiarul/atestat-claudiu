@@ -7,7 +7,11 @@ import loginEmail from "../assets/images/login-email.svg";
 import loginPass from "../assets/images/login-pass.svg";
 import loginUser from "../assets/images/login-user.svg";
 import loginEye from "../assets/images/login-eye.svg";
+import successNotify from "../assets/images/success-notify.svg";
+import failedNotify from "../assets/images/failed-notify.svg";
+
 import Image from "next/image";
+import axios from "axios";
 
 function Page() {
   const [visible, setVisible] = useState(false);
@@ -15,6 +19,35 @@ function Page() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [passconf, setPassConf] = useState("");
+
+  const [valid, setValid] = useState(0);
+  const [errMsg, setErrMsg] = useState("");
+
+  async function tryRegister() {
+    if (user !== "" && email !== "" && pass !== "" && passconf !== "") {
+      const data = JSON.stringify({
+        username: user,
+        email: email,
+        password: pass,
+      });
+      const res = await axios
+        .post("http://localhost:4000/register", data, {
+          headers: { "Content-Type": "application/json" },
+        })
+        .then((res) => {
+          console.log(res.data);
+          console.log(valid);
+          if (res.data.success === true) {
+            setValid(1);
+            setErrMsg(res.data.message);
+          }
+          if (res.data.success === false) {
+            setValid(2);
+            setErrMsg(res.data.message);
+          }
+        });
+    }
+  }
 
   return (
     <div className="container">
@@ -107,8 +140,34 @@ function Page() {
             onClick={() => setVisible(!visible)}
           />
         </div>
-        <button>&#206;nregistreaz&#259; !</button>
+        <button
+          onClick={() => {
+            tryRegister().then(() => {
+              window.setTimeout(function () {
+                window.location.href = "http://localhost:3000/";
+              }, 1000);
+            });
+          }}
+        >
+          &#206;nregistreaz&#259; !
+        </button>
       </div>
+      {(() => {
+        if (valid === 1)
+          return (
+            <div className="notify success">
+              <Image src={successNotify} width={32} height={32} alt="success" />
+              <h2>{errMsg}</h2>
+            </div>
+          );
+        else if (valid === 2)
+          return (
+            <div className="notify failed">
+              <Image src={failedNotify} width={32} height={32} alt="success" />
+              <h2>{errMsg}</h2>
+            </div>
+          );
+      })()}
     </div>
   );
 }

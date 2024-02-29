@@ -1,0 +1,187 @@
+@font-face {
+  font-family: "da";
+  src: url("../../assets/fonts/Metropolis-Bold.otf");
+}
+
+@font-face {
+  font-family: "da1";
+  src: url("../../assets/fonts/Metropolis-Black.otf");
+}
+
+@font-face {
+  font-family: "nu";
+  src: url("../../assets/fonts/Metropolis-Regular.otf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "nu";
+  box-sizing: content-box;
+}
+
+:root {
+  --red: #e02932;
+  --yel: #ffda33;
+  --gre: #58a550;
+  --black: #141414;
+  --purple: #3a86ff;
+  --gry: #747474;
+  --smarald: #1bc537;
+  --smarald-contur: #16a22d;
+  --crimson: #d7263d;
+}
+
+html,
+body {
+  overflow-y: hidden;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  justify-content: space-around;
+}
+
+.order > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.billing {
+  display: flex;
+  flex-direction: column;
+}
+
+.billing > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.billing > .name {
+  display: flex;
+  flex-direction: row;
+}
+.billing > .city {
+  display: flex;
+  flex-direction: row;
+}
+
+.billing > .name > div {
+  display: flex;
+  flex-direction: column;
+}
+.billing > .city > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment > .q {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cc {
+  margin-top: 2rem;
+}
+.payment > .cc > .card {
+  display: flex;
+  flex-direction: column;
+}
+.payment > .cc > .exp_mon {
+  display: flex;
+}
+
+.payment > .cc > .exp_mon > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper-order,
+.payment {
+  margin: 5rem;
+}
+
+input {
+  padding: 0.5rem;
+  border-radius: 15px;
+  border: none;
+  border: 3px solid black;
+  transition: 0.4s;
+  font-size: 16px;
+  font-family: "da" !important;
+}
+
+.can {
+  position: relative;
+  margin: 10px;
+  label {
+    padding: 0 0.2em;
+    position: absolute;
+    top: -0.5em;
+    left: 1em;
+    background-color: white;
+    font-family: "da";
+    color: var(--gry);
+  }
+}
+input:focus,
+input:active,
+input:hover {
+  border: 3px solid var(--purple);
+  outline: none;
+}
+h1 {
+  font-family: "da1" !important;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.payment button {
+  font-size: 24px;
+  padding: 10px 40px;
+  background-color: transparent;
+  border: none;
+  border-radius: 20px;
+  transition: 0.2s;
+  background-color: var(--black);
+  color: white;
+  font-family: "da1" !important;
+  margin-top: 1rem;
+}
+
+.payment button:hover {
+  background-color: var(--purple);
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.middl {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+span {
+  font-family: "da";
+}
+.bigger {
+  font-size: 2rem;
+}
+
+#road {
+  width: auto;
+  height: auto;
+  position: absolute;
+  bottom: 100px;
+}
+
+.ramburs * {
+  margin: 5px;
+}
+.ramburs {
+  display: flex;
+  align-items: center;
+  span {
+    font-size: 0.75rem;
+  }
+  margin: 0.5rem 0rem 0.5rem 0rem;
+}
