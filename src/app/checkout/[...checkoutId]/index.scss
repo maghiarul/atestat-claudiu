@@ -112,6 +112,16 @@ input {
   font-family: "da" !important;
 }
 
+textarea {
+  padding: 1rem;
+  border-radius: 15px;
+  border: none;
+  border: 3px solid black;
+  transition: 0.4s;
+  font-size: 16px;
+  font-family: "da" !important;
+}
+
 .can {
   position: relative;
   margin: 10px;

@@ -127,6 +127,10 @@ function Page({ params }: PageProps) {
           </div>
         </div>
         <div>
+          <div className="can">
+            <label htmlFor="">Observatii client</label>
+            <textarea placeholder="As dori ca pachetul..." />
+          </div>
           <div className="ramburs">
             <input type="checkbox"></input>
             <span>Plata la ramburs ?</span>
